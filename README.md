@@ -1,4 +1,16 @@
 Dynamic web Projectweek 2026 - Laure-Grace Lokiyo & Samantha Karengera
+# BrusselsExplorer
+
+BrusselsExplorer is een interactieve webapplicatie waarmee gebruikers interessante locaties en evenementen in Brussel kunnen ontdekken met behulp van open data van de opendata.brussels API.
+
+De applicatie biedt functies zoals het bekijken van locaties, het raadplegen van gedetailleerde informatie, zoeken, filteren, sorteren en het opslaan van favorieten voor een gepersonaliseerde ervaring.
+
+---
+
+##  Team
+
+- **Laure-Grace Lokiyo** – Projectopzet, JavaScript, API-integratie en functionaliteit  
+- **Samantha Karengera** – Projectopzet, HTML-structuur en CSS
 
 
 ## Technische vereisten
