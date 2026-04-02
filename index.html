@@ -1,37 +1,25 @@
 <!DOCTYPE html>
 <html lang="nl">
-
 <head>
     <meta charset="UTF-8">
-    <title>Brussels Explorer</title> 
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Inter&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="style.css"> <!-- css koppelen -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brussels Explorer - Ontdek Brussel</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
     <header>
         <h1>Brussels Explorer</h1>
-        <p>Ontdek parken in Brussel!</p> 
+        <input type="text" id="searchInput" placeholder="Zoek een locatie...">
+        <select id="filterType">
+            <option value="all">Alle types</option>
+        </select>
     </header>
-
-    <!-- FILTERS -->
-    <section>
-        <input type="text" id="search" placeholder="Zoek park op naam"> 
-        <input type="text" id="gemeente" placeholder="Filter op gemeente"> 
-        <button id="sort">Sorteer A-Z</button> 
-    </section>
-
-    <!-- FAVORIETEN -->
-    <section>
-        <h3>Favorieten</h3>
-        <ul id="favorites"></ul> <!-- lijst -->
-    </section>
-
-    <!-- RESULTATEN -->
-    <section id="results"></section> <!-- hier komen de kaarten -->
-
-    <script src="script.js"></script> <!-- js -->
+    <main>
+        <section id="locationsContainer" class="locations-grid"></section>
+    </main>
+    <footer>
+        <p>&copy; 2026 Brussels Explorer</p>
+    </footer>
+    <script src="script.js"></script>
 </body>
 </html>

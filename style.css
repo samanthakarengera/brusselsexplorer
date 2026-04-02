@@ -1,53 +1,57 @@
+/* Basis styling */
 body {
-    font-family: 'Inter', sans-serif; /* clean tekst */
-    background: #f8f8f8;
+    font-family: Arial, sans-serif;
     margin: 0;
-    padding: 20px;
-    color: #222;
-}
-
-h1 {
-    font-family: 'Playfair Display', serif; /* classy titel */
+    padding: 0;
+    background: #f2f2f2;
+    color: #333;
 }
 
 header {
-    margin-bottom: 20px;
+    background-color: #eb62c0;
+    color: #fff;
+    padding: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
 }
 
-input, button {
-    padding: 10px;
-    margin: 5px;
-    border: 1px solid #ccc;
+header input, header select {
+    padding: 0.5rem;
+    font-size: 1rem;
 }
 
-button {
-    background: black;
-    color: white;
+.locations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.location-card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.location-card h3 {
+    margin-top: 0;
+}
+
+.location-card button {
+    margin-top: auto;
+    padding: 0.5rem;
+    background-color: #003366;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
     cursor: pointer;
 }
 
-/* kaarten */
-#results {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-}
-
-.card {
-    background: white;
-    border: 1px solid #ddd;
-}
-
-.card img {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
-}
-
-.card h3 {
-    padding: 10px;
-}
-
-.card p {
-    padding: 0 10px;
+.location-card button:hover {
+    background-color: #0055a5;
 }
