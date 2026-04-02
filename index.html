@@ -1,50 +1,37 @@
 <!DOCTYPE html>
 <html lang="nl">
+
 <head>
     <meta charset="UTF-8">
-    <title>Brussels Explorer</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"> <!-- Leaflet (kaart library) -->
+    <title>Brussels Explorer</title> 
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Inter&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css"> <!-- css koppelen -->
 </head>
+
 <body>
 
-    <h1>Brussels Explorer</h1>
-    <p>Ontdek parken in Brussel!</p>
+    <header>
+        <h1>Brussels Explorer</h1>
+        <p>Ontdek parken in Brussel!</p> 
+    </header>
 
-    <!-- zoek + filters -->
-    <input type="text" id="searchName" placeholder="Zoek op naam">
-    <input type="text" id="filterGemeente" placeholder="Filter op gemeente">
+    <!-- FILTERS -->
+    <section>
+        <input type="text" id="search" placeholder="Zoek park op naam"> 
+        <input type="text" id="gemeente" placeholder="Filter op gemeente"> 
+        <button id="sort">Sorteer A-Z</button> 
+    </section>
 
-    <!-- sorteer -->
-    <button id="sorteer">Sorteer A-Z</button>
+    <!-- FAVORIETEN -->
+    <section>
+        <h3>Favorieten</h3>
+        <ul id="favorites"></ul> <!-- lijst -->
+    </section>
 
-    <h2>Favorieten</h2>
-    <ul id="favorites"></ul>
+    <!-- RESULTATEN -->
+    <section id="results"></section> <!-- hier komen de kaarten -->
 
-
-    <br><br>
-     <table>
-        <thead> <!-- kolom namen -->
-            <tr>
-                <th>Naam</th> <!-- kolom -->
-                <th>Adres</th>
-                <th>Gemeente</th>
-                <th>Type</th>
-                <th>Oppervlakte</th>
-                <th>ID</th>
-            </tr>
-        </thead>
-
-        <tbody id="tbody"></tbody> <!-- data komt hier -->
-    </table>
-
-
-   
-
-    <h2>Visuele weergave</h2>
-    <div id="vweergave"></div>
-
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <script src="script.js"></script>
+    <script src="script.js"></script> <!-- js -->
 </body>
 </html>

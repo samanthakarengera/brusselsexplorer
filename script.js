@@ -1,260 +1,114 @@
-const API_URL = "https://opendata.brussels.be/api/explore/v2.1/catalog/datasets/brussels-parks/records?limit=20"; 
-// const = constante waarde (modern JS) | API link
+// API van jouw gekozen dataset
+const API_URL = "https://opendata.brussels.be/api/explore/v2.1/catalog/datasets/parcs_et_jardins_publics/records?limit=20";
 
-let allData = []; 
-// array om data op te slaan
+// globale variabele om data te bewaren
+let data = [];
 
-let map; 
-// variabele voor kaart
 
 // DATA OPHALEN
-async function fetchData() { 
-// async = wachten op API (modern JS)
+async function fetchData() {
+    const response = await fetch(API_URL); // API oproep
+    const result = await response.json(); // JSON maken
 
-    const response = await fetch(API_URL); 
-    // fetch = API call | await = wachten | promise
+    data = result.results; // data opslaan
 
-    const data = await response.json(); 
-    // JSON omzetten naar object
-
-    allData = data.results; 
-    // data opslaan in array
-
-    showData(allData); 
-    // functie oproepen (callback idee)
-
-    initMap(allData); 
-    // kaart maken
-
-    loadFavorites(); 
-    // localStorage laden
+    displayData(data); // tonen
 }
 
 
-// DATA TONEN
-function showData(items) { 
-// functie met parameter
+// DATA TONEN ALS KAARTEN
+function displayData(items) {
+    const container = document.getElementById("results"); // selecteer html
+    container.innerHTML = ""; // leegmaken
 
-    displayTable(items); 
-    // tabel tonen
+    items.forEach(item => { // loop door data
 
-    displayCards(items); 
-    // cards tonen
-}
-
-
-// TABEL MAKEN
-function displayTable(items) {
-
-    const tableBody = document.getElementById("tableBody"); 
-    // DOM selecteren
-
-    tableBody.innerHTML = ""; 
-    // DOM manipuleren (leegmaken)
-
-    items.forEach(item => { 
-    // iteratie over array
-
-        const row = document.createElement("tr"); 
-        // element maken
-
-        row.innerHTML = ` 
-            <td>${item.name || "-"}</td> 
-            <!-- template literal | ternary -->
-            <td>${item.address || "-"}</td>
-            <td>${item.municipality || "-"}</td>
-            <td>${item.type || "-"}</td>
-            <td>${item.surface_area || "-"}</td>
-            <td><button onclick="addFavorite('${item.name}')">+</button></td>
-            <!-- event koppelen -->
-        `;
-
-        tableBody.appendChild(row); 
-        // element toevoegen (DOM)
-    });
-}
-
-
-// CARDS
-function displayCards(items) {
-
-    const container = document.getElementById("cards"); 
-    // selecteren
-
-    container.innerHTML = ""; 
-    // leegmaken
-
-    items.forEach(item => { 
-    // loop
-
-        const div = document.createElement("div"); 
-        // element maken
-
-        div.classList.add("card"); 
-        // class toevoegen
+        const div = document.createElement("div"); // kaart maken
+        div.classList.add("card"); // class toevoegen
 
         div.innerHTML = `
-            <h3>${item.name}</h3> 
-            <!-- template literal -->
-            <p>${item.address || "-"}</p>
+            <img src="https://source.unsplash.com/300x200/?park" /> 
+            <!-- fake afbeelding -->
+
+            <h3>${item.nom || "Geen naam"}</h3> 
+            <!-- naam -->
+
+            <p>${item.adresse || "Geen adres"}</p> 
+            <!-- adres -->
+
+            <p>${item.commune || "Onbekend"}</p> 
+            <!-- gemeente -->
+
+            <button onclick="addFavorite('${item.nom}')">Opslaan</button>
+            <!-- favoriet knop -->
         `;
 
-        container.appendChild(div); 
-        // toevoegen
+        container.appendChild(div); // toevoegen
     });
 }
 
 
-// FILTER
+// ZOEK + FILTER
 function filterData() {
+    const search = document.getElementById("search").value.toLowerCase(); // input
+    const gemeente = document.getElementById("gemeente").value.toLowerCase(); // input
 
-    const name = document.getElementById("searchName").value.toLowerCase(); 
-    // input lezen | DOM
+    const filtered = data.filter(item => { // filter functie
 
-    const gemeente = document.getElementById("filterGemeente").value.toLowerCase(); 
-    // tweede filter
-
-    const filtered = allData.filter(item => { 
-    // array methode filter
-
-        return (item.name || "").toLowerCase().includes(name) &&
-               (item.municipality || "").toLowerCase().includes(gemeente);
-        // condition + includes
+        return (item.nom || "").toLowerCase().includes(search) &&
+               (item.commune || "").toLowerCase().includes(gemeente);
     });
 
-    showData(filtered); 
-    // callback / functie hergebruik
+    displayData(filtered); // opnieuw tonen
 }
 
 
 // SORTEREN
-document.getElementById("sortAZ").addEventListener("click", () => { 
-// event listener | arrow function
+document.getElementById("sort").addEventListener("click", () => {
 
-    const sorted = [...allData].sort((a, b) => 
-    // kopie array | sort methode
-
-        (a.name || "").localeCompare(b.name || "") 
-        // vergelijken strings
+    const sorted = [...data].sort((a, b) => 
+        (a.nom || "").localeCompare(b.nom || "")
     );
 
-    showData(sorted); 
-    // tonen
+    displayData(sorted);
 });
 
 
-// FAVORIETEN TOEVOEGEN
+// FAVORIETEN OPSLAAN
 function addFavorite(name) {
+    let favs = JSON.parse(localStorage.getItem("favs")) || []; // ophalen
 
-    let favs = JSON.parse(localStorage.getItem("favs")) || []; 
-    // localStorage lezen | JSON parse
-
-    if (!favs.includes(name)) { 
-    // check (condition)
-
-        favs.push(name); 
-        // toevoegen aan array
+    if (!favs.includes(name)) {
+        favs.push(name); // toevoegen
     }
 
-    localStorage.setItem("favs", JSON.stringify(favs)); 
-    // opslaan in localStorage
+    localStorage.setItem("favs", JSON.stringify(favs)); // opslaan
 
-    loadFavorites(); 
-    // opnieuw tonen
+    showFavorites(); // tonen
 }
 
 
 // FAVORIETEN TONEN
-function loadFavorites() {
+function showFavorites() {
+    const list = document.getElementById("favorites");
+    list.innerHTML = "";
 
-    const list = document.getElementById("favoritesList"); 
-    // DOM selecteren
+    let favs = JSON.parse(localStorage.getItem("favs")) || [];
 
-    list.innerHTML = ""; 
-    // leegmaken
+    favs.forEach(f => {
+        const li = document.createElement("li");
+        li.textContent = f;
 
-    let favs = JSON.parse(localStorage.getItem("favs")) || []; 
-    // ophalen
-
-    favs.forEach(fav => { 
-    // loop
-
-        const li = document.createElement("li"); 
-        // element
-
-        li.textContent = fav; 
-        // tekst toevoegen
-
-        const btn = document.createElement("button"); 
-        // knop maken
-
-        btn.textContent = "x"; 
-        // tekst
-
-        btn.onclick = () => removeFavorite(fav); 
-        // event + arrow function
-
-        li.appendChild(btn); 
-        // toevoegen
-
-        list.appendChild(li); 
-        // tonen
+        list.appendChild(li);
     });
 }
 
 
-// VERWIJDEREN
-function removeFavorite(name) {
-
-    let favs = JSON.parse(localStorage.getItem("favs")) || []; 
-    // ophalen
-
-    favs = favs.filter(f => f !== name); 
-    // filter array
-
-    localStorage.setItem("favs", JSON.stringify(favs)); 
-    // opslaan
-
-    loadFavorites(); 
-    // refresh
-}
-
-
-// KAART (Leaflet)
-function initMap(items) {
-
-    map = L.map('map').setView([50.85, 4.35], 11); 
-    // kaart maken
-
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map); 
-    // kaart tiles
-
-    items.forEach(item => { 
-    // loop
-
-        if (item.geo_point_2d) { 
-        // check locatie
-
-            L.marker([
-                item.geo_point_2d.lat,
-                item.geo_point_2d.lon
-            ])
-            .addTo(map)
-            .bindPopup(item.name); 
-            // marker + popup
-        }
-    });
-}
-
-
-// EVENTS
-document.getElementById("searchName").addEventListener("input", filterData); 
-// event input
-
-document.getElementById("filterGemeente").addEventListener("input", filterData); 
-// event input
+// EVENTS (interactie)
+document.getElementById("search").addEventListener("input", filterData);
+document.getElementById("gemeente").addEventListener("input", filterData);
 
 
 // START
-fetchData(); 
-// app starten
+fetchData();
+showFavorites();
