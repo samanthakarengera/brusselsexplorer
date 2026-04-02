@@ -4,17 +4,47 @@
     <meta charset="UTF-8">
     <title>Brussels Explorer</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"> <!-- Leaflet (kaart library) -->
 </head>
 <body>
 
     <h1>Brussels Explorer</h1>
+    <p>Ontdek parken in Brussel!</p>
 
-    <!-- zoekmachine -->
-    <input type="text" id="search" placeholder="Zoek...">
+    <!-- zoek + filters -->
+    <input type="text" id="searchName" placeholder="Zoek op naam">
+    <input type="text" id="filterGemeente" placeholder="Filter op gemeente">
 
-    <!-- lijst -->
-    <div id="list"></div>
+    <!-- sorteer -->
+    <button id="sorteer">Sorteer A-Z</button>
 
+    <h2>Favorieten</h2>
+    <ul id="favorites"></ul>
+
+
+    <br><br>
+     <table>
+        <thead> <!-- kolom namen -->
+            <tr>
+                <th>Naam</th> <!-- kolom -->
+                <th>Adres</th>
+                <th>Gemeente</th>
+                <th>Type</th>
+                <th>Oppervlakte</th>
+                <th>ID</th>
+            </tr>
+        </thead>
+
+        <tbody id="tbody"></tbody> <!-- data komt hier -->
+    </table>
+
+
+   
+
+    <h2>Visuele weergave</h2>
+    <div id="vweergave"></div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

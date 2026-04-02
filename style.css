@@ -1,14 +1,53 @@
 body {
     font-family: Arial;
     padding: 20px;
+    background: #f5f5f5;
 }
 
-#list {
+/* inputs */
+input, button {
+    padding: 8px;
+    margin: 5px;
+}
+
+/* tabel */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+th {
+    background: #333;
+    color: white;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+/* kaart */
+#map {
+    height: 300px;
+    margin: 20px 0;
+}
+
+/* cards */
+#cards {
     display: grid;
-    gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
 }
 
 .card {
-    border: 1px solid #ccc;
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+/* favorieten */
+#favoritesList {
+    background: white;
     padding: 10px;
 }
