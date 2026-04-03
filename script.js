@@ -81,14 +81,14 @@ function update() {
 function toon(data) {
 
     container.innerHTML = ""; 
-    // eerst leegmaken zodat er geen dubbele kaarten zijn
+    // eerst leegmaken zo geen dubbele kaarten zijn
 
     data.forEach(loc => {
 
         const div = document.createElement("div"); // nieuwe kaart
         div.className = "kaart"; // css class
 
-        // hier maak ik de HTML van de kaart
+        // hier maak ik de HTML van kaart
         div.innerHTML = `
             <h3>${loc.naam}</h3>
             <p>Postcode: ${loc.postcode}</p>
@@ -100,7 +100,7 @@ function toon(data) {
 
         // als ik op knop druk
         div.querySelector("button").addEventListener("click", () => {
-            toggleFavoriet(loc.naam);
+            editFavoriet(loc.naam);
         });
 
         container.appendChild(div); // kaart toevoegen aan pagina
@@ -108,7 +108,7 @@ function toon(data) {
 }
 
 // fav toevoegen of verwijderen
-function toggleFavoriet(naam) {
+function editFavoriet(naam) {
 
     if (favorieten.includes(naam)) {
         favorieten = favorieten.filter(f => f !== naam); // als het al bestaat → verwijderen
