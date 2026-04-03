@@ -1,12 +1,11 @@
 body {
     font-family: 'Montserrat', sans-serif; /* font */
     margin: 0;
-    background: #e8f5e9; /* groen */
+    background: #f1f8f4; /* pastelgroen */
 }
 
 header {
-    background: #97d79a; /* kleur */
-    color: hsl(135, 53%, 29%);
+    background: #a5d6a7; /* licht groen */
     padding: 1rem;
     display: flex;
     flex-wrap: wrap;
@@ -15,61 +14,44 @@ header {
 
 .subtitle {
     width: 100%;
-    margin: 0;
-    font-size: 0.9rem;
 }
 
-input, select {
+input, select, button {
     padding: 0.5rem;
     border-radius: 5px;
     border: none;
 }
 
+/* lijst layout */
 #kaartenContainer {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* grid */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* responsive */
     gap: 1rem;
     padding: 1rem;
 }
 
+/* kaart (nu zonder foto) */
 .kaart {
     background: white;
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-.kaart img {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
-}
-
-.inhoud {
     padding: 1rem;
+    border-radius: 10px;
 }
 
-button {
-    margin-top: 0.5rem;
-    padding: 0.5rem;
-    background: #2e7d32;
-    color: white;
-    border: none;
-}
-
+/* favorieten lijst */
 #favorietenContainer {
-    background: #fffde7;
     padding: 1rem;
 }
 
 .favItem {
     display: flex;
     justify-content: space-between;
+    background: white;
+    margin-bottom: 5px;
+    padding: 0.5rem;
 }
 
 footer {
     text-align: center;
     padding: 1rem;
     background: #a5d6a7;
-    color: #1b5e20;
-    margin-top: 2rem;
 }
