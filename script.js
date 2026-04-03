@@ -1,163 +1,119 @@
-// URL van JSON bestand API
+// json bestand
 const apiUrl = "parcs.json";
 
-// DOM elementen selecteren 
-const kaartenContainer = document.getElementById("kaartenContainer"); // Grid voor kaarten
-const zoekInput = document.getElementById("zoekInput"); // Zoekbalk input
-const filterOpties = document.getElementById("filterOpties"); // Dropdown filter
-const sorteerOpties = document.getElementById("sorteerOpties"); // Dropdown sorteer
-const weergave = document.getElementById("weergave"); // Dropdown voor alles/favorieten
-const favorietenContainer = document.getElementById("favorietenContainer"); // Favorieten lijst
+// DOM elementen
+const container = document.getElementById("kaartenContainer");
+const zoekInput = document.getElementById("zoekInput");
+const filterOpties = document.getElementById("filterOpties");
+const sorteerOpties = document.getElementById("sorteerOpties");
 
-// Data arrays
-let locaties = []; // Alle locaties
-let favorieten = JSON.parse(localStorage.getItem("favorieten")) || []; // Favorieten ophalen of leeg
+// arrays
+let locaties = [];
+let favorieten = JSON.parse(localStorage.getItem("favorieten")) || [];
 
-// Asynchrone functie om data op te halen (async/await + fetch + promises)
+// data ophalen
 async function haalDataOp() {
-    const res = await fetch(apiUrl); // Fetch van JSON bestand
-    const data = await res.json(); // JSON omzetten naar objecten
+    const res = await fetch(apiUrl); // fetch json
+    const data = await res.json(); // json naar object
 
-    // Iteratie over JSON array en array methodes (.map)
+    // data omzetten
     locaties = data.map(item => ({
-        naam: item.name_nl || "", // Naam van park
-        postcode: item.postalcode, // Postcode
-        gemeente: item.municipality_nl, // Gemeente
-        grootte: item.type_txt, // Grootte van park
-        lat: item.geo_point_2d?.lat, // Latitude (optioneel chaining)
-        lon: item.geo_point_2d?.lon, // Longitude
-        foto: "https://source.unsplash.com/300x150/?park" // Placeholder afbeelding
+        naam: item.name_nl,
+        postcode: item.postalcode,
+        gemeente: item.municipality_nl,
+        grootte: item.type_txt,
+        lat: item.geo_point_2d?.lat,
+        lon: item.geo_point_2d?.lon
     }));
 
-    vulFilter(); // Callback functie om filter te vullen
-    updateWeergave(); // Toon kaarten
+    vulFilter();
+    update();
 }
 
-// Filter dropdown vullen met unieke postcodes + favorieten
+// filter vullen
 function vulFilter() {
-    const postcodes = [...new Set(locaties.map(l => l.postcode))]; // Unieke postcodes via set
+    const pcs = [...new Set(locaties.map(l => l.postcode))];
 
-    // Favorieten optie toevoegen
-    const fav = document.createElement("option");
-    fav.value = "favorieten";
-    fav.textContent = "⭐ Favorieten";
-    filterOpties.appendChild(fav);
-
-    // Postcode opties toevoegen
-    postcodes.forEach(pc => {
-        const option = document.createElement("option");
-        option.value = pc;
-        option.textContent = "Postcode " + pc;
-        filterOpties.appendChild(option);
+    pcs.forEach(pc => {
+        const opt = document.createElement("option");
+        opt.value = pc;
+        opt.textContent = "Postcode " + pc;
+        filterOpties.appendChild(opt);
     });
 }
 
-// Centrale functie: zoek + filter + sorteer
-function updateWeergave() {
-    let lijst = [...locaties]; // Kopie van originele array
+// centrale functie
+function update() {
+    let lijst = [...locaties];
 
-    // Zoekfunctie (startsWith voor begin van naam)
-    const zoek = zoekInput.value.toLowerCase().trim(); // Kleine letters + trim
+    // zoeken
+    const zoek = zoekInput.value.toLowerCase().trim();
     if (zoek !== "") {
-        lijst = lijst.filter(l => (l.naam || "").toLowerCase().trim().startsWith(zoek));
+        lijst = lijst.filter(l => l.naam.toLowerCase().startsWith(zoek));
     }
 
-    // Filteren
-    if (filterOpties.value === "favorieten") { // Favorieten filter
-        lijst = lijst.filter(l => favorieten.includes(l.naam));
-    } else if (filterOpties.value !== "alles") { // Postcode filter
+    // filter
+    if (filterOpties.value !== "alles") {
         lijst = lijst.filter(l => l.postcode == filterOpties.value);
     }
 
-    // Sorteren
-    if (sorteerOpties.value === "alfabet") { // Alfabetisch
-        lijst.sort((a, b) => a.naam.localeCompare(b.naam)); // Arrow function + localeCompare
+    // sorteren
+    if (sorteerOpties.value === "alfabet") {
+        lijst.sort((a, b) => a.naam.localeCompare(b.naam));
     }
-    if (sorteerOpties.value === "klein") { // Klein naar groot
+
+    if (sorteerOpties.value === "klein") {
         lijst.sort((a, b) => a.grootte.localeCompare(b.grootte));
     }
-    if (sorteerOpties.value === "groot") { // Groot naar klein
+
+    if (sorteerOpties.value === "groot") {
         lijst.sort((a, b) => b.grootte.localeCompare(a.grootte));
     }
 
-    toonKaarten(lijst); // Callback functie om kaarten te tonen
+    toon(lijst);
 }
 
-// Kaarten tonen op pagina
-function toonKaarten(data) {
-    kaartenContainer.innerHTML = ""; // Oude kaarten leegmaken
+// tonen
+function toon(data) {
+    container.innerHTML = "";
 
-    data.forEach(loc => { // Itereren over array
-        const div = document.createElement("div"); // Nieuw element
-        div.className = "kaart"; // CSS class
-
-        // Template literals
-        div.innerHTML = `
-            <img src="${loc.foto}">
-            <div class="inhoud">
-                <h3>${loc.naam}</h3>
-                <p>Postcode: ${loc.postcode}</p>
-                <p>Gemeente: ${loc.gemeente}</p>
-                <p>Grootte: ${loc.grootte}</p>
-                <p>Coord.: ${loc.lat}, ${loc.lon}</p>
-                <button>${favorieten.includes(loc.naam) ? "Verwijder" : "Favoriet"}</button> <!-- Ternary operator -->
-            </div>
-        `;
-
-        // Event listener voor favoriet knop (callback function)
-        const knop = div.querySelector("button");
-        knop.addEventListener("click", () => { toggleFavoriet(loc.naam); });
-
-        kaartenContainer.appendChild(div); // Element toevoegen aan DOM
-    });
-}
-
-// Favorieten toggle functie
-function toggleFavoriet(naam) {
-    // Conditional ternary style via if
-    if (favorieten.includes(naam)) {
-        favorieten = favorieten.filter(f => f !== naam); // Array methode filter
-    } else {
-        favorieten.push(naam); // Push naar array
-    }
-
-    // LocalStorage opslaan
-    localStorage.setItem("favorieten", JSON.stringify(favorieten));
-
-    updateWeergave(); // Kaarten updaten
-    toonFavorieten(); // Favorieten updaten
-}
-
-// Favorieten lijst tonen
-function toonFavorieten() {
-    favorietenContainer.innerHTML = ""; // Oude items verwijderen
-    const lijst = locaties.filter(l => favorieten.includes(l.naam)); // Filteren array
-
-    lijst.forEach(loc => {
+    data.forEach(loc => {
         const div = document.createElement("div");
-        div.className = "favItem";
+        div.className = "kaart";
+
         div.innerHTML = `
-            <span>${loc.naam}</span>
-            <button>❌</button>
+            <h3>${loc.naam}</h3>
+            <p>Postcode: ${loc.postcode}</p>
+            <p>Gemeente: ${loc.gemeente}</p>
+            <p>Grootte: ${loc.grootte}</p>
+            <p>Coord.: ${loc.lat}, ${loc.lon}</p>
+            <button>${favorieten.includes(loc.naam) ? "Verwijder" : "Favoriet"}</button>
         `;
-        div.querySelector("button").addEventListener("click", () => { toggleFavoriet(loc.naam); }); // Callback
-        favorietenContainer.appendChild(div); // Toevoegen
+
+        div.querySelector("button").addEventListener("click", () => {
+            toggleFavoriet(loc.naam);
+        });
+
+        container.appendChild(div);
     });
 }
 
-// Events koppelen
-zoekInput.addEventListener("input", updateWeergave); // Zoek event
-filterOpties.addEventListener("change", updateWeergave); // Filter event
-sorteerOpties.addEventListener("change", updateWeergave); // Sort event
-weergave.addEventListener("change", () => { // Weergave event
-    if (weergave.value === "favorieten") {
-        kaartenContainer.innerHTML = "";
-        toonFavorieten();
+// favorieten toggle
+function toggleFavoriet(naam) {
+    if (favorieten.includes(naam)) {
+        favorieten = favorieten.filter(f => f !== naam);
     } else {
-        favorietenContainer.innerHTML = "";
-        updateWeergave();
+        favorieten.push(naam);
     }
-});
 
-// Start app
-haalDataOp(); // Async functie oproepen
+    localStorage.setItem("favorieten", JSON.stringify(favorieten));
+    update();
+}
+
+// events
+zoekInput.addEventListener("input", update);
+filterOpties.addEventListener("change", update);
+sorteerOpties.addEventListener("change", update);
+
+// start
+haalDataOp();
