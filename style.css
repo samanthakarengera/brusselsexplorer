@@ -65,3 +65,11 @@ button {
     display: flex;
     justify-content: space-between;
 }
+
+footer {
+    text-align: center; /* Tekst in het midden */
+    padding: 1rem;
+    background: #a5d6a7; /* Zelfde pastelgroen als header */
+    color: #1b5e20;
+    margin-top: 2rem;
+}
