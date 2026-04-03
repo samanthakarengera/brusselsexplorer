@@ -7,14 +7,14 @@ De applicatie biedt functies zoals het bekijken van locaties (coordinaten), zoek
 
 ---
 
-##  Team
+##  Team / Taakverdeling
 
 - **Laure-Grace Lokiyo** – Projectopzet, JavaScript, API-integratie, functionaliteit, userstories en backlog 
 - **Samantha Karengera** – Projectopzet, HTML-structuur, CSS en README
 
 
 
-# Technische vereisten
+## Technische vereisten
 
 | Concept | Waar toegepast / Uitleg | Regel / Functie |
 |---------|------------------------|----------------|
@@ -37,3 +37,13 @@ De applicatie biedt functies zoals het bekijken van locaties (coordinaten), zoek
 | Basis HTML layout | Flexbox header, CSS grid kaarten | style.css, r.6-20, r.24-29 |
 | Basis CSS | Achtergrond, knoppen, borders | style.css, r.1-49 |
 | Gebruiksvriendelijke elementen | Knoppen, dropdowns, duidelijk grid | script.js + style.css, r.56-72, r.91-101 |
+
+## API
+
+Link : https://opendata.brussels.be/explore/dataset/parcs_et_jardins_publics/information/?sort=-type&refine.type_txt=%3E+3+ha&refine.source=Ville+de+Bruxelles+-+D%C3%A9veloppement+Urbain+-+Planification+et+D%C3%A9veloppement&q.timerange.last_update=last_update:%5B2024-01-01+TO+2026-04-03%5D
+
+## Bronnen
+ AI chatlog hier nog toevoegen
+
+## Screenshot
+nog toe te voegen
