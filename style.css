@@ -67,9 +67,9 @@ button {
 }
 
 footer {
-    text-align: center; /* Tekst in het midden */
+    text-align: center;
     padding: 1rem;
-    background: #a5d6a7; /* Zelfde pastelgroen als header */
+    background: #a5d6a7;
     color: #1b5e20;
     margin-top: 2rem;
 }
