@@ -9,6 +9,12 @@ De applicatie biedt functies zoals het bekijken van locaties (coordinaten), zoek
 
 ---
 
+## Installatiehandleiding
+1. Download het ZIP bestand via Github
+2. Pak het bestand uit
+3. Open de folder in VSCode
+4. Start de Live Server
+
 ##  Team / Taakverdeling
 
 - **Laure-Grace Lokiyo** – Projectopzet, JavaScript, API-integratie
@@ -49,9 +55,3 @@ Link : https://opendata.brussels.be/explore/dataset/parcs_et_jardins_publics/inf
 
 ## Screenshot
 ![alt text](image.png)
-
-## Installatiehandleiding
-1. Download het ZIP bestand via Github
-2. Pak het bestand uit
-3. Open de folder in VSCode
-4. Start de Live Server
