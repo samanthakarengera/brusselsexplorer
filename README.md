@@ -16,27 +16,32 @@ De applicatie biedt functies zoals het bekijken van locaties (coordinaten), zoek
 
 ## Technische vereisten
 
-| Concept | Waar toegepast / Uitleg | Regel / Functie |
-|---------|------------------------|----------------|
-| Elementen selecteren | `document.getElementById` voor alle inputs en containers | script.js, r.8-14 |
-| Elementen manipuleren | `innerHTML`, `appendChild` voor kaarten en favorieten | script.js, r.56-72, r.91-101 |
-| Events koppelen | `addEventListener` op zoek, filter, sorteer, weergave, knoppen | script.js, r.104-108 |
-| Constanten | `const` gebruikt voor apiUrl en DOM elementen | script.js, r.1-7 |
-| Template literals | Voor kaarten en favorieten HTML | script.js, r.62-71 |
-| Iteratie over arrays | `.forEach` voor kaarten en favorieten | script.js, r.56, r.91 |
-| Array methodes | `.map` bij ophalen data, `.filter` bij zoeken/filter/favorieten | script.js, r.20, r.41, r.95 |
-| Arrow functions | Gebruikt in `.forEach` en event handlers | script.js, r.56, r.93, r.104-108 |
-| Conditional / ternary | Favoriet knop tekst `favoriet` of `verwijder` | script.js, r.67 |
-| Callback functions | Functies als parameter bij events en `forEach` | script.js, r.57, r.94, r.105 |
-| Promises | `fetch()` gebruikt + `.json()` | script.js, r.17 |
-| Async / Await | `haalDataOp` is async met await fetch | script.js, r.16-20 |
-| Fetch | `fetch(apiUrl)` | script.js, r.17 |
-| JSON manipuleren | `res.json()` + `.map` | script.js, r.18-20 |
-| Formulier validatie | trim() bij zoekinput | script.js, r.36 |
-| LocalStorage | `localStorage.setItem` en `getItem` | script.js, r.79, r.8 |
-| Basis HTML layout | Flexbox header, CSS grid kaarten | style.css, r.6-20, r.24-29 |
-| Basis CSS | Achtergrond, knoppen, borders | style.css, r.1-49 |
-| Gebruiksvriendelijke elementen | Knoppen, dropdowns, duidelijk grid | script.js + style.css, r.56-72, r.91-101 |
+## Technische vereisten
+
+| Concept | Waar gebruikt / uitleg | Bestand | Regel(s) |
+|--------|----------------------|--------|---------|
+| Elementen selecteren | `getElementById` voor container, inputs | script.js | r.4-7 |
+| Elementen manipuleren | `innerHTML`, `appendChild` voor kaarten | script.js | r.55-72 |
+| Events koppelen | `addEventListener` op input, select, buttons | script.js | r.74-78 |
+| Constanten | `const apiUrl` en DOM elementen | script.js | r.1-7 |
+| Template literals | HTML in JS met `${}` | script.js | r.59-67 |
+| Iteratie over arrays | `.forEach()` bij tonen van kaarten | script.js | r.55 |
+| Array methodes | `.map()` bij data ophalen | script.js | r.16-22 |
+| Array methodes | `.filter()` bij zoeken/filter/favorieten | script.js | r.33-44 |
+| Arrow functions | `(a,b)=>{}` bij sorteren en events | script.js | r.45-52 |
+| Conditional (ternary) | knop tekst favoriet/verwijder | script.js | r.65 |
+| Callback functions | functies in `.forEach()` en events | script.js | r.55, r.70 |
+| Promises | `fetch().then()` in favorieten pagina | favorieten.js | r.6-7 |
+| Async & Await | `async function haalDataOp()` | script.js | r.10-13 |
+| Fetch API | `fetch(apiUrl)` | script.js | r.11 |
+| JSON manipulatie | `res.json()` en `.map()` | script.js | r.12-16 |
+| LocalStorage | `getItem` en `setItem` voor favorieten | script.js | r.8, r.66 |
+| Formulier validatie | `.trim()` bij zoekinput | script.js | r.31 |
+| CSS Grid | layout kaarten | style.css | r.18-23 |
+| Flexbox | header layout | style.css | r.6-10 |
+| Basis CSS | kleuren, spacing, styling | style.css | volledig bestand |
+| Gebruiksvriendelijke elementen | knoppen, dropdowns, UX | alle bestanden | overal |
+| Observer API | niet gebruikt | - | - |
 
 ## API
 
