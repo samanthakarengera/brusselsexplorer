@@ -1,7 +1,7 @@
-// URL van JSON bestand met parken
+// URL van JSON bestand API
 const apiUrl = "parcs.json";
 
-// DOM elementen selecteren (DOM manipulatie)
+// DOM elementen selecteren 
 const kaartenContainer = document.getElementById("kaartenContainer"); // Grid voor kaarten
 const zoekInput = document.getElementById("zoekInput"); // Zoekbalk input
 const filterOpties = document.getElementById("filterOpties"); // Dropdown filter
