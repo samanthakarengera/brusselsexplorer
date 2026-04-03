@@ -3,20 +3,17 @@ Dynamic web Projectweek 2026 - Laure-Grace Lokiyo & Samantha Karengera
 
 Brussels Explorer is een interactieve webapplicatie waarmee gebruikers interessante openbare parken en tuinen in Brussel kunnen ontdekken met behulp van open data van de opendata.brussels API.
 
+## Functionaliteiten
+
 De applicatie biedt functies zoals het bekijken van locaties (coordinaten), zoeken, filteren, sorteren en het opslaan van favorieten voor een gepersonaliseerde ervaring.
 
 ---
 
 ##  Team / Taakverdeling
 
-- **Laure-Grace Lokiyo** – Projectopzet, JavaScript, API-integratie, userstories/backlog 
+- **Laure-Grace Lokiyo** – Projectopzet, JavaScript, API-integratie
 - **Samantha Karengera** – Projectopzet, HTML-structuur, CSS en README
 
-
-
-## Technische vereisten
-
-## Technische vereisten
 
 ## Technische vereisten
 
@@ -52,3 +49,9 @@ Link : https://opendata.brussels.be/explore/dataset/parcs_et_jardins_publics/inf
 
 ## Screenshot
 ![alt text](image.png)
+
+## Installatiehandleiding
+1. Download het ZIP bestand via Github
+2. Pak het bestand uit
+3. Open de folder in VSCode
+4. Start de Live Server
