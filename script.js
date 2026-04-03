@@ -50,9 +50,9 @@ function update() {
     let lijst = [...locaties]; // kopie van alle data
 
     // zoekfilter
-    const zoek = zoekInput.value.toLowerCase().trim();
+    const zoek = zoekInput.value.toLowerCase().trim(); 
     if (zoek !== "") {
-        lijst = lijst.filter(l => l.naam.toLowerCase().includes(zoek));
+        lijst = lijst.filter(l => l.naam && l.naam.toLowerCase().includes(zoek));
     }
 
     // postcode filter
