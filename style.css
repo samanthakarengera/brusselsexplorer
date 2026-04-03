@@ -1,57 +1,67 @@
-/* Basis styling */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Montserrat', sans-serif; /* font */
     margin: 0;
-    padding: 0;
-    background: #f2f2f2;
-    color: #333;
+    background: #e8f5e9; /* groen */
 }
 
 header {
-    background-color: #eb62c0;
-    color: #fff;
+    background: #97d79a; /* kleur */
+    color: hsl(135, 53%, 29%);
     padding: 1rem;
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
     gap: 1rem;
 }
 
-header input, header select {
+.subtitle {
+    width: 100%;
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+input, select {
     padding: 0.5rem;
-    font-size: 1rem;
-}
-
-.locations-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1rem;
-    padding: 1rem;
-}
-
-.location-card {
-    background: #fff;
-    border-radius: 8px;
-    padding: 1rem;
-    box-shadow: 0 0 5px rgba(0,0,0,0.1);
-    display: flex;
-    flex-direction: column;
-}
-
-.location-card h3 {
-    margin-top: 0;
-}
-
-.location-card button {
-    margin-top: auto;
-    padding: 0.5rem;
-    background-color: #003366;
-    color: #fff;
+    border-radius: 5px;
     border: none;
-    border-radius: 4px;
-    cursor: pointer;
 }
 
-.location-card button:hover {
-    background-color: #0055a5;
+#kaartenContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* grid */
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.kaart {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.kaart img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.inhoud {
+    padding: 1rem;
+}
+
+button {
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    background: #2e7d32;
+    color: white;
+    border: none;
+}
+
+#favorietenContainer {
+    background: #fffde7;
+    padding: 1rem;
+}
+
+.favItem {
+    display: flex;
+    justify-content: space-between;
 }

@@ -1,25 +1,50 @@
 <!DOCTYPE html>
 <html lang="nl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brussels Explorer - Ontdek Brussel</title>
+    <title>Brussels Explorer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <header>
-        <h1>Brussels Explorer</h1>
-        <input type="text" id="searchInput" placeholder="Zoek een locatie...">
-        <select id="filterType">
-            <option value="all">Alle types</option>
-        </select>
-    </header>
-    <main>
-        <section id="locationsContainer" class="locations-grid"></section>
-    </main>
-    <footer>
-        <p>&copy; 2026 Brussels Explorer</p>
-    </footer>
-    <script src="script.js"></script>
+
+<header>
+    <h1>Brussels Explorer</h1>
+    <p class="subtitle">Ontdek openbare parken en tuinen in Brussel!</p>
+
+    <!-- zoek -->
+    <input type="text" id="zoekInput" placeholder="Zoek op naam...">
+
+    <!-- filter -->
+    <select id="filterOpties">
+        <option value="alles">Filter</option>
+    </select>
+
+    <!-- sorteer -->
+    <select id="sorteerOpties">
+        <option value="none">Sorteer</option>
+        <option value="alfabet">Alfabetisch</option>
+        <option value="klein">Klein → Groot</option>
+        <option value="groot">Groot → Klein</option>
+    </select>
+
+    <!-- weergave -->
+    <select id="weergave">
+        <option value="alles">Alle locaties</option>
+        <option value="favorieten">⭐ Favorieten</option>
+    </select>
+</header>
+
+<main>
+    <section id="kaartenContainer"></section>
+</main>
+
+<section id="favorietenContainer"></section>
+
+<script src="script.js"></script>
 </body>
 </html>
