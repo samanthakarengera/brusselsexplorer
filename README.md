@@ -48,7 +48,7 @@ De applicatie biedt functies zoals het bekijken van locaties (coordinaten), zoek
 Link : https://opendata.brussels.be/explore/dataset/parcs_et_jardins_publics/information/?sort=-type&refine.type_txt=%3E+3+ha&refine.source=Ville+de+Bruxelles+-+D%C3%A9veloppement+Urbain+-+Planification+et+D%C3%A9veloppement&q.timerange.last_update=last_update:%5B2024-01-01+TO+2026-04-03%5D
 
 ## Bronnen
- AI chatlog hier nog toevoegen
+ ChatGPT : https://chatgpt.com/share/69cf809a-ae04-832f-8b91-19b297113a29 
 
 ## Screenshot
 ![alt text](image.png)
