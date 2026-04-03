@@ -81,14 +81,14 @@ function update() {
 function toon(data) {
 
     container.innerHTML = ""; 
-    // eerst leegmaken zo geen dubbele kaarten zijn
+    // eerst leegmaken
 
     data.forEach(loc => {
 
-        const div = document.createElement("div"); // nieuwe kaart
+        const div = document.createElement("div"); // nieuw
         div.className = "kaart"; // css class
 
-        // hier maak ik de HTML van kaart
+        //aanmaak html
         div.innerHTML = `
             <h3>${loc.naam}</h3>
             <p>Postcode: ${loc.postcode}</p>
