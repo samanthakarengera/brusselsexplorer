@@ -1,7 +1,7 @@
 Dynamic web Projectweek 2026 - Laure-Grace Lokiyo & Samantha Karengera
-# BrusselsExplorer
+# Brussels Explorer
 
-BrusselsExplorer is een interactieve webapplicatie waarmee gebruikers interessante openbare parken en tuinen in Brussel kunnen ontdekken met behulp van open data van de opendata.brussels API.
+Brussels Explorer is een interactieve webapplicatie waarmee gebruikers interessante openbare parken en tuinen in Brussel kunnen ontdekken met behulp van open data van de opendata.brussels API.
 
 De applicatie biedt functies zoals het bekijken van locaties (coordinaten), zoeken, filteren, sorteren en het opslaan van favorieten voor een gepersonaliseerde ervaring.
 
@@ -20,7 +20,7 @@ De applicatie biedt functies zoals het bekijken van locaties (coordinaten), zoek
 
 | Concept | Waar gebruikt / uitleg | Bestand | Regel(s) |
 |--------|----------------------|--------|---------|
-| Elementen selecteren | `getElementById` voor container, inputs | script.js | r.4-7 |
+| Elementen selecteren | `getElementById` voor container, inputs | script.js | r.5-8 |
 | Elementen manipuleren | `innerHTML`, `appendChild` voor kaarten | script.js | r.55-72 |
 | Events koppelen | `addEventListener` op input, select, buttons | script.js | r.74-78 |
 | Constanten | `const apiUrl` en DOM elementen | script.js | r.1-7 |
@@ -41,7 +41,7 @@ De applicatie biedt functies zoals het bekijken van locaties (coordinaten), zoek
 | Flexbox | header layout | style.css | r.6-10 |
 | Basis CSS | kleuren, spacing, styling | style.css | volledig bestand |
 | Gebruiksvriendelijke elementen | knoppen, dropdowns, UX | alle bestanden | overal |
-| Observer API | niet gebruikt | - | - |
+
 
 ## API
 

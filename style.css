@@ -1,11 +1,11 @@
 body {
-    font-family: 'Montserrat', sans-serif; /* font */
+    font-family: 'Montserrat', sans-serif; 
     margin: 0;
-    background: #f1f8f4; /* pastelgroen */
+    background: #f1f8f4; 
 }
 
 header {
-    background: #a5d6a7; /* licht groen */
+    background: #a5d6a7;
     padding: 1rem;
     display: flex;
     flex-wrap: wrap;
@@ -30,7 +30,7 @@ input, select, button {
     padding: 1rem;
 }
 
-/* kaart (nu zonder foto) */
+/* kaart*/
 .kaart {
     background: white;
     padding: 1rem;

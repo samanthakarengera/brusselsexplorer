@@ -1,53 +1,57 @@
-// json bestand
+// api bestand
 const apiUrl = "parcs.json";
 
-// DOM elementen
-const container = document.getElementById("kaartenContainer");
+// alle HTML elementen die ik nodig heb
+const container = document.getElementById("kaartenContainer"); 
 const zoekInput = document.getElementById("zoekInput");
-const filterOpties = document.getElementById("filterOpties");
+const filterOpties = document.getElementById("filterOpties"); 
 const sorteerOpties = document.getElementById("sorteerOpties");
 
-// arrays
-let locaties = [];
-let favorieten = JSON.parse(localStorage.getItem("favorieten")) || [];
+// aanmaak arrays 
+let locaties = []; // alle parken 
+let favorieten = JSON.parse(localStorage.getItem("favorieten")) || []; // de favorieten uit localStorage anders gwn lege array
 
-// data ophalen
+// data uit json 
 async function haalDataOp() {
-    const res = await fetch(apiUrl); // fetch json
-    const data = await res.json(); // json naar object
 
-    // data omzetten
+    const res = await fetch(apiUrl); // promise:fetch haalt het bestand op
+    const data = await res.json();  // json -> js
+
     locaties = data.map(item => ({
-        naam: item.name_nl,
-        postcode: item.postalcode,
-        gemeente: item.municipality_nl,
-        grootte: item.type_txt,
+        naam: item.name_nl, 
+        postcode: item.postalcode, 
+        gemeente: item.municipality_nl, 
+        grootte: item.type_txt, 
         lat: item.geo_point_2d?.lat,
-        lon: item.geo_point_2d?.lon
+        lon: item.geo_point_2d?.lon 
     }));
 
-    vulFilter();
-    update();
+    vulFilter(); //filter dropdown met postcodes
+    update(); // nu zie je da
 }
 
-// filter vullen
+//de filter dropdown
 function vulFilter() {
-    const pcs = [...new Set(locaties.map(l => l.postcode))];
 
+    // alle postcodes uniek maken
+    const pcs = [...new Set(locaties.map(l => l.postcode))];
+    // elke postcode aparte optie 
     pcs.forEach(pc => {
-        const opt = document.createElement("option");
-        opt.value = pc;
-        opt.textContent = "Postcode " + pc;
-        filterOpties.appendChild(opt);
+        const opt = document.createElement("option"); // nieuwe option
+        opt.value = pc; // waarde
+        opt.textContent = "Postcode " + pc; // tekst zichtbaar
+        filterOpties.appendChild(opt); // toevoegen aan dropdown
     });
 }
 
-// centrale functie
+//(zoek + filter + sorteer)
 function update() {
-    let lijst = [...locaties];
 
-    // zoeken
-    const zoek = zoekInput.value.toLowerCase().trim();
+    let lijst = [...locaties]; 
+    
+    // zoek
+    const zoek = zoekInput.value.toLowerCase().trim(); 
+    
     if (zoek !== "") {
         lijst = lijst.filter(l => l.naam.toLowerCase().startsWith(zoek));
     }
@@ -62,25 +66,29 @@ function update() {
         lijst.sort((a, b) => a.naam.localeCompare(b.naam));
     }
 
-    if (sorteerOpties.value === "klein") {
+    if (sorteerOpties.value === "klein") { // van klein naar groot 
         lijst.sort((a, b) => a.grootte.localeCompare(b.grootte));
     }
 
-    if (sorteerOpties.value === "groot") {
+    if (sorteerOpties.value === "groot") { // van groot naar klein
         lijst.sort((a, b) => b.grootte.localeCompare(a.grootte));
     }
 
     toon(lijst);
 }
 
-// tonen
+// de kaarten op de pagina
 function toon(data) {
-    container.innerHTML = "";
+
+    container.innerHTML = ""; 
+    // eerst leegmaken zodat er geen dubbele kaarten zijn
 
     data.forEach(loc => {
-        const div = document.createElement("div");
-        div.className = "kaart";
 
+        const div = document.createElement("div"); // nieuwe kaart
+        div.className = "kaart"; // css class
+
+        // hier maak ik de HTML van de kaart
         div.innerHTML = `
             <h3>${loc.naam}</h3>
             <p>Postcode: ${loc.postcode}</p>
@@ -90,30 +98,34 @@ function toon(data) {
             <button>${favorieten.includes(loc.naam) ? "Verwijder" : "Favoriet"}</button>
         `;
 
+        // als ik op knop druk
         div.querySelector("button").addEventListener("click", () => {
             toggleFavoriet(loc.naam);
         });
 
-        container.appendChild(div);
+        container.appendChild(div); // kaart toevoegen aan pagina
     });
 }
 
-// favorieten toggle
+// fav toevoegen of verwijderen
 function toggleFavoriet(naam) {
+
     if (favorieten.includes(naam)) {
-        favorieten = favorieten.filter(f => f !== naam);
+        favorieten = favorieten.filter(f => f !== naam); // als het al bestaat → verwijderen
     } else {
-        favorieten.push(naam);
+        favorieten.push(naam); // anders toevoegen
     }
 
+    // opslaan in localStorage zodat bewaard blijft
     localStorage.setItem("favorieten", JSON.stringify(favorieten));
-    update();
+
+    update(); // pagina opnieuw tonen
 }
 
-// events
-zoekInput.addEventListener("input", update);
-filterOpties.addEventListener("change", update);
-sorteerOpties.addEventListener("change", update);
+// events koppelen aan inputs
+zoekInput.addEventListener("input", update); // zoeken
+filterOpties.addEventListener("change", update); // filter
+sorteerOpties.addEventListener("change", update); // sorteren
 
-// start
-haalDataOp();
+// start van de app
+haalDataOp(); // data ophalen bij laden
