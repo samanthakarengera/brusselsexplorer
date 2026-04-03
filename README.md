@@ -1,39 +1,40 @@
 Dynamic web Projectweek 2026 - Laure-Grace Lokiyo & Samantha Karengera
 # BrusselsExplorer
 
-BrusselsExplorer is een interactieve webapplicatie waarmee gebruikers interessante locaties en evenementen in Brussel kunnen ontdekken met behulp van open data van de opendata.brussels API.
+BrusselsExplorer is een interactieve webapplicatie waarmee gebruikers interessante openbare parken en tuinen in Brussel kunnen ontdekken met behulp van open data van de opendata.brussels API.
 
-De applicatie biedt functies zoals het bekijken van locaties, het raadplegen van gedetailleerde informatie, zoeken, filteren, sorteren en het opslaan van favorieten voor een gepersonaliseerde ervaring.
+De applicatie biedt functies zoals het bekijken van locaties (coordinaten), zoeken, filteren, sorteren en het opslaan van favorieten voor een gepersonaliseerde ervaring.
 
 ---
 
 ##  Team
 
-- **Laure-Grace Lokiyo** – Projectopzet, JavaScript, API-integratie en functionaliteit  
-- **Samantha Karengera** – Projectopzet, HTML-structuur en CSS
+- **Laure-Grace Lokiyo** – Projectopzet, JavaScript, API-integratie, functionaliteit, userstories en backlog 
+- **Samantha Karengera** – Projectopzet, HTML-structuur, CSS en README
 
 
-## Technische vereisten
 
-| Vereiste | Waar | Uitleg |
-|--------|------|-------|
-| Elementen selecteren | script.js regel 30 | getElementById |
-| Elementen manipuleren | regel 32 | innerHTML aanpassen |
-| Events koppelen | regel 115 | addEventListener |
-| Constanten | regel 1 | const API_URL |
-| Template literals | regel 40 | ${item.name} |
-| Iteratie arrays | regel 35 | forEach |
-| Array methodes | regel 55 | filter(), sort() |
-| Arrow functions | regel 65 | () => |
-| Ternary operator | regel 40 | || "-" |
-| Callback functions | regel 20 | showData() |
-| Promises | regel 6 | fetch() |
-| Async/Await | regel 4 | async function |
-| Observer API | (optioneel) | kan nog toegevoegd worden |
-| Fetch API | regel 6 | data ophalen |
-| JSON verwerking | regel 8 | response.json() |
-| Form validatie | filter inputs | input controleren |
-| LocalStorage | regel 75 | favs opslaan |
-| HTML layout | index.html | tabel + grid |
-| CSS layout | style.css | grid + styling |
-| UX elementen | script.js | knoppen + verwijderen |
+# Technische vereisten
+
+| Concept | Waar toegepast / Uitleg | Regel / Functie |
+|---------|------------------------|----------------|
+| Elementen selecteren | `document.getElementById` voor alle inputs en containers | script.js, r.8-14 |
+| Elementen manipuleren | `innerHTML`, `appendChild` voor kaarten en favorieten | script.js, r.56-72, r.91-101 |
+| Events koppelen | `addEventListener` op zoek, filter, sorteer, weergave, knoppen | script.js, r.104-108 |
+| Constanten | `const` gebruikt voor apiUrl en DOM elementen | script.js, r.1-7 |
+| Template literals | Voor kaarten en favorieten HTML | script.js, r.62-71 |
+| Iteratie over arrays | `.forEach` voor kaarten en favorieten | script.js, r.56, r.91 |
+| Array methodes | `.map` bij ophalen data, `.filter` bij zoeken/filter/favorieten | script.js, r.20, r.41, r.95 |
+| Arrow functions | Gebruikt in `.forEach` en event handlers | script.js, r.56, r.93, r.104-108 |
+| Conditional / ternary | Favoriet knop tekst `favoriet` of `verwijder` | script.js, r.67 |
+| Callback functions | Functies als parameter bij events en `forEach` | script.js, r.57, r.94, r.105 |
+| Promises | `fetch()` gebruikt + `.json()` | script.js, r.17 |
+| Async / Await | `haalDataOp` is async met await fetch | script.js, r.16-20 |
+| Observer API | Niet toegepast (optioneel voor scroll of resize) | - |
+| Fetch | `fetch(apiUrl)` | script.js, r.17 |
+| JSON manipuleren | `res.json()` + `.map` | script.js, r.18-20 |
+| Formulier validatie | trim() bij zoekinput | script.js, r.36 |
+| LocalStorage | `localStorage.setItem` en `getItem` | script.js, r.79, r.8 |
+| Basis HTML layout | Flexbox header, CSS grid kaarten | style.css, r.6-20, r.24-29 |
+| Basis CSS | Achtergrond, knoppen, borders | style.css, r.1-49 |
+| Gebruiksvriendelijke elementen | Knoppen, dropdowns, duidelijk grid | script.js + style.css, r.56-72, r.91-101 |
