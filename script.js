@@ -81,7 +81,7 @@ function update() {
 function toon(data) {
 
     container.innerHTML = ""; 
-    // eerst leegmaken
+    // eerst leegmaken zo is er geen dubbel
 
     data.forEach(loc => {
 
