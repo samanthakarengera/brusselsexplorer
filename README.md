@@ -30,7 +30,6 @@ De applicatie biedt functies zoals het bekijken van locaties (coordinaten), zoek
 | Callback functions | Functies als parameter bij events en `forEach` | script.js, r.57, r.94, r.105 |
 | Promises | `fetch()` gebruikt + `.json()` | script.js, r.17 |
 | Async / Await | `haalDataOp` is async met await fetch | script.js, r.16-20 |
-| Observer API | Niet toegepast (optioneel voor scroll of resize) | - |
 | Fetch | `fetch(apiUrl)` | script.js, r.17 |
 | JSON manipuleren | `res.json()` + `.map` | script.js, r.18-20 |
 | Formulier validatie | trim() bij zoekinput | script.js, r.36 |
