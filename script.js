@@ -44,36 +44,32 @@ function vulFilter() {
     });
 }
 
-//(zoek + filter + sorteer)
-function update() {
+//(zoek + filter + sorteer) 
 
-    let lijst = [...locaties]; 
-    
-    // zoek
-    const zoek = zoekInput.value.toLowerCase().trim(); 
-    
+function update() {
+    let lijst = [...locaties]; // kopie van alle data
+
+    // zoekfilter
+    const zoek = zoekInput.value.toLowerCase().trim();
     if (zoek !== "") {
-        lijst = lijst.filter(l => l.naam.toLowerCase().startsWith(zoek));
+        lijst = lijst.filter(l => l.naam.toLowerCase().includes(zoek));
     }
 
-    // filter
+    // postcode filter
     if (filterOpties.value !== "alles") {
         lijst = lijst.filter(l => l.postcode == filterOpties.value);
     }
 
     // sorteren
     if (sorteerOpties.value === "alfabet") {
-        lijst.sort((a, b) => a.naam.localeCompare(b.naam));
+        lijst.sort((a, b) => (a.naam || "").localeCompare(b.naam || ""));
+    } else if (sorteerOpties.value === "klein") {
+        lijst.sort((a, b) => (a.grootte || "").localeCompare(b.grootte || ""));
+    } else if (sorteerOpties.value === "groot") {
+        lijst.sort((a, b) => (b.grootte || "").localeCompare(a.grootte || ""));
     }
 
-    if (sorteerOpties.value === "klein") { // van klein naar groot 
-        lijst.sort((a, b) => a.grootte.localeCompare(b.grootte));
-    }
-
-    if (sorteerOpties.value === "groot") { // van groot naar klein
-        lijst.sort((a, b) => b.grootte.localeCompare(a.grootte));
-    }
-
+    // alles tonen
     toon(lijst);
 }
 
