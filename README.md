@@ -9,7 +9,7 @@ De applicatie biedt functies zoals het bekijken van locaties (coordinaten), zoek
 
 ##  Team / Taakverdeling
 
-- **Laure-Grace Lokiyo** – Projectopzet, JavaScript, API-integratie, functionaliteit, userstories en backlog 
+- **Laure-Grace Lokiyo** – Projectopzet, JavaScript, API-integratie, userstories/backlog 
 - **Samantha Karengera** – Projectopzet, HTML-structuur, CSS en README
 
 
